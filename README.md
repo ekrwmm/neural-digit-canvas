@@ -1,73 +1,27 @@
-# React + TypeScript + Vite
+# MNIST Çizim ve Tahmin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+28x28 çizim alanında rakam çizip, sinir ağı katmanlarını görselleştiren ve 0-9 arası tahmin yüzdeleri gösteren web uygulaması.
 
-Currently, two official plugins are available:
+## Özellikler
+- 28x28 grid üzerinde serbest çizim
+- Nöral ağ katman görselleştirmesi
+- 0-9 arası olasılık dağılımı
+- Otomatik ön‑işleme (kırpma, merkezleme, normalize)
+- İlk açılışta hızlı eğitim, sonrasında IndexedDB’den hızlı yükleme
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Kurulum
+npm install## Çalıştırma
+npm run dev## Kullanım
+1. Çizim alanına rakam çizin.
+2. “Tahmin Et” butonuna basın.
+3. Sağ panelde olasılıkları inceleyin.
 
-## React Compiler
+## Teknik Notlar
+- İlk çalıştırmada model kısa bir eğitim yapar ve sonuçları IndexedDB’ye kaydeder.
+- Sonraki açılışlarda model doğrudan cache’den yüklenir.
+- MNIST veri dosyaları ilk eğitim sırasında internetten alınır.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Lisans
+MIT
